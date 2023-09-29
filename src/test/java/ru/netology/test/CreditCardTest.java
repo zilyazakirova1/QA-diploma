@@ -62,10 +62,10 @@ public class CreditCardTest {
     }
 
     @Test
-    void creditNegativeNumberCard17Symbols() {
+    void creditNegativeNumberCard15Symbols() {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
-        payment.inputData(DataHelper.getNumberCard17Symbols());
+        payment.inputData(DataHelper.getNumberCard15Symbols());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
@@ -75,7 +75,7 @@ public class CreditCardTest {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
         payment.inputData(DataHelper.getCardNumberEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -102,7 +102,7 @@ public class CreditCardTest {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
         payment.inputData(DataHelper.getCardMonthEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -148,7 +148,7 @@ public class CreditCardTest {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
         payment.inputData(DataHelper.getCardYearEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -195,7 +195,7 @@ public class CreditCardTest {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
         payment.inputData(DataHelper.getCardHolderEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -213,7 +213,7 @@ public class CreditCardTest {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();
         payment.inputData(DataHelper.getCardCVVEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 }

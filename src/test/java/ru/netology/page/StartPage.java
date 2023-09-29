@@ -16,7 +16,7 @@ public class StartPage {
         heading.shouldBe(visible);
     }
 
-    public ru.netology.page.PaymentPage goToBuyPage() {
+    public ru.netology.page.PaymentPage goToPaymentPage() {
         buyButton.click();
         return new ru.netology.page.PaymentPage();
     }

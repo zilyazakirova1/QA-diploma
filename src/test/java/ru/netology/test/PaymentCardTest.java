@@ -38,7 +38,7 @@ public class PaymentCardTest {
     @Test
     void paymentPositiveAllFieldValidApproved() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getApprovedCard());
         payment.waitNotificationApproved();
         assertEquals("APPROVED", DbHelper.getPaymentStatus());
@@ -47,7 +47,7 @@ public class PaymentCardTest {
     @Test
     void paymentPositiveAllFieldValidDeclined() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getDeclinedCard());
         payment.waitNotificationFailure();
         assertEquals("DECLINED", DbHelper.getPaymentStatus());
@@ -56,17 +56,17 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeAllFieldEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getEmptyCard());
         payment.waitNotificationWrongFormat4Fields();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
     @Test
-    void paymentNegativeNumberCard17Symbols() {
+    void paymentNegativeNumberCard15Symbols() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
-        payment.inputData(DataHelper.getNumberCard17Symbols());
+        var payment = startPage.goToPaymentPage();
+        payment.inputData(DataHelper.getNumberCard15Symbols());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
@@ -74,9 +74,9 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeNumberEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardNumberEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -84,7 +84,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeMonth1Symbol() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardMonth1Symbol());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -93,7 +93,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeMonthOver12() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardMonthOver12());
         payment.waitNotificationExpirationDateError();
         assertEquals("0", DbHelper.getOrderCount());
@@ -102,7 +102,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeMonth00ThisYear() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardMonth00ThisYear());
         payment.waitNotificationExpirationDateError();
         assertEquals("0", DbHelper.getOrderCount());
@@ -111,9 +111,9 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeMonthEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardMonthEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -121,7 +121,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeYear00() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardYear00());
         payment.waitNotificationExpiredError();
         assertEquals("0", DbHelper.getOrderCount());
@@ -130,7 +130,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeYear1Symbol() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardYear1Symbol());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -139,7 +139,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeYearUnderThisYear() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardYearUnderThisYear());
         payment.waitNotificationExpiredError();
         assertEquals("0", DbHelper.getOrderCount());
@@ -149,9 +149,9 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeYearEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardYearEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
@@ -159,7 +159,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeHolder1Simbol() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardHolder1Simbol());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -168,7 +168,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeHolderCirillic() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardHolderCirillic());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -177,7 +177,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeHolderNumeric() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardHolderNumeric());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -186,7 +186,7 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeHolderSpecialSymbols() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardSpecialSymbols());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -196,16 +196,16 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeHolderEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardHolderEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
     @Test
     void paymentNegativeCvv1Symbol() {
         var startPage = new StartPage();
-        var payment = startPage.goToBuyPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardCvv1Symbol());
         payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
@@ -214,9 +214,9 @@ public class PaymentCardTest {
     @Test
     void paymentNegativeCVVEmpty() {
         var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
+        var payment = startPage.goToPaymentPage();
         payment.inputData(DataHelper.getCardCVVEmpty());
-        payment.waitNotificationExpirationDateError();
+        payment.waitNotificationWrongFormat();
         assertEquals("0", DbHelper.getOrderCount());
     }
 
