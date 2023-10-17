@@ -9,7 +9,7 @@
 Успешные: 38
 Неуспешные:10
 
-![Allure](https://github.com/zilyazakirova1/QA-diploma/blob/main/img.png)
+![Allure](C:\Users\Ruslan\Desktop\Automation\Logs\allure.PNG)
 
  # Рекомендации
  Устранить баги согласно Issue  
