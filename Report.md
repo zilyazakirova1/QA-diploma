@@ -9,7 +9,7 @@
 Успешные: 38
 Неуспешные:10
 
-![Allure](C:\Users\Ruslan\Desktop\Automation\Logs\allure.PNG)
+![Allure](https://user-images.githubusercontent.com/126807088/275900906-380ad83c-11d4-4b76-a764-2343a58349e3.PNG)
 
  # Рекомендации
  Устранить баги согласно Issue  
