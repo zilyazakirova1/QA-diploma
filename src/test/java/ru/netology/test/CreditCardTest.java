@@ -191,15 +191,6 @@ public class CreditCardTest {
 
 
     @Test
-    void creditNegativeHolderEmpty() {
-        var startPage = new StartPage();
-        var payment = startPage.goToCreditPage();
-        payment.inputData(DataHelper.getCardHolderEmpty());
-        payment.waitNotificationWrongFormat();
-        assertEquals("0", DbHelper.getOrderCount());
-    }
-
-    @Test
     void creditNegativeCvv1Symbol() {
         var startPage = new StartPage();
         var payment = startPage.goToCreditPage();

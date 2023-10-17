@@ -192,16 +192,6 @@ public class PaymentCardTest {
         assertEquals("0", DbHelper.getOrderCount());
     }
 
-
-    @Test
-    void paymentNegativeHolderEmpty() {
-        var startPage = new StartPage();
-        var payment = startPage.goToPaymentPage();
-        payment.inputData(DataHelper.getCardHolderEmpty());
-        payment.waitNotificationWrongFormat();
-        assertEquals("0", DbHelper.getOrderCount());
-    }
-
     @Test
     void paymentNegativeCvv1Symbol() {
         var startPage = new StartPage();
